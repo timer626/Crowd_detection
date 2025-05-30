@@ -5,6 +5,7 @@ import logging
 import time
 import torch
 import os
+import csv
 
 
 def process_frame(model, frame):
@@ -142,6 +143,13 @@ def process_video():
         results["Avg People"].append(avg_people)
         results["People Std"].append(people_std)
         logger.info(f"{model_name}: Люди: {avg_people:.2f}, Std: {people_std:.2f}, FPS: {avg_fps:.2f}")
+        # Сохранение результатов в CSV
+    with open("output/model_comparison.csv", "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=["Model", "FPS", "Avg People", "People Std"])
+        writer.writeheader()
+        for row in results:
+            writer.writerow(row)
+        logger.info("Результаты сохранены в model_comparison.csv")
 
 
     return results, people_per_frame, confidences, heatmap, max_diff_frame
