@@ -34,7 +34,7 @@ def process_video():
     logger = logging.getLogger(__name__)
 
     # Пути
-    video_path = "data/crowd.mp4"
+    video_path = os.path.join(os.path.dirname(__file__), "..", "data", "crowd.mp4")
     output_paths = {"YOLOv8x": "output/output_yolov8x.mp4", "YOLO11x": "output/output_yolo11x.mp4"}
     comparison_output = "output/output_comparison.mp4"
     os.makedirs("output", exist_ok=True)
