@@ -29,7 +29,7 @@ FPS: Скорость обработки.
 
 1) git clone https://github.com/timer626/Crowd_detection
 
-2) cd Сrowd_detection
+2) cd Crowd_detection
 
 3) python -m venv venv
 
@@ -60,8 +60,10 @@ python src/main.py
 # Методология
 
 Модели: YOLOv8x и YOLO11x от Ultralytics.
-Обработка: Детекция и трекинг людей (класс 0) с уверенностью > 0.4, IoU > 0.5, размер изображения 640.
-Инструменты: Ultralytics, OpenCV, Plotly, Pandas.
+
+Обработка: Детекция и трекинг людей (класс Person) с уверенностью, размер изображения 640.
+
+Инструменты: Ultralytics, OpenCV, Plotly.
 
 # Результаты
 

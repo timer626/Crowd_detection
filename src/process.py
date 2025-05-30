@@ -26,7 +26,7 @@ def process_video():
     """Обработка видео,создание видео и метрик.
 
     Returns:
-        results: Словарь с FPS, Avg People, People Std.
+        results: Список словарей с FPS, Avg People, People Std.
         people_per_frame: Словарь с количеством людей по кадрам.
         confidences: Словарь со средней уверенностью по кадрам.
         heatmap: Словарь с тепловыми картами плотности толпы.
@@ -62,7 +62,6 @@ def process_video():
     logger.info("Модели загружены")
 
     # Результаты
-    results = {"Model": [], "FPS": [], "Avg People": [], "People Std": []}
     people_per_frame = {name: [] for name in models}
     confidences = {name: [] for name in models}
     max_diff_frame = {"frame": None, "diff": 0, "number": 0}
@@ -141,15 +140,20 @@ def process_video():
     cv2.imwrite(f"output/max_diff_frame_{max_diff_frame['number']}.png", max_diff_frame["frame"])
     logger.info(f"Ключевой кадр сохранен: max_diff_frame_{max_diff_frame['number']}.png")
 
+
+    results = []
+
     # Метрики
     for model_name in models:
         avg_fps = frame_count / model_times[model_name]
         avg_people = np.mean(people_per_frame[model_name])
         people_std = np.std(people_per_frame[model_name])
-        results["Model"].append(model_name)
-        results["FPS"].append(avg_fps)
-        results["Avg People"].append(avg_people)
-        results["People Std"].append(people_std)
+        results.append({
+            "Model": model_name,
+            "FPS": avg_fps,
+            "Avg People": avg_people,
+            "People Std": people_std
+        })
         logger.info(f"{model_name}: Люди: {avg_people:.2f}, Std: {people_std:.2f}, FPS: {avg_fps:.2f}")
         # Сохранение результатов в CSV
     with open("output/model_comparison.csv", "w", newline="") as f:
