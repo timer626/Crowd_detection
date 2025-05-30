@@ -40,13 +40,21 @@ def process_video():
         logger.info(f"GPU: {torch.cuda.get_device_name(0)}")
 
     # Пути
-    video_path = os.path.join(os.path.dirname(__file__), "..", "data", "crowd.mp4")
+    data_dir = os.path.join(os.path.dirname(__file__), "..", "data")
+    video_path = os.path.join(data_dir, "crowd.mp4")
+    os.makedirs(data_dir, exist_ok=True)  # Создаём папку data
     output_paths = {"YOLOv8x": "output/output_yolov8x.mp4", "YOLO11x": "output/output_yolo11x.mp4"}
     comparison_output = "output/output_comparison.mp4"
     os.makedirs("output", exist_ok=True)
 
+    if not os.path.exists(video_path):
+        if not os.listdir(data_dir):
+            logger.error(f"Папка {data_dir} пуста")
+        else:
+            logger.error(f"Файл {video_path} не найден в папке {data_dir}")
+        raise FileNotFoundError(f"Видео crowd.mp4 не найдено в {data_dir}")
+
     # Модели
-    # Стало
     models = {
         "YOLOv8x": YOLO("yolov8x.pt"),
         "YOLO11x": YOLO("yolo11x.pt")
