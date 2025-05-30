@@ -8,7 +8,7 @@ import os
 import csv
 
 
-def process_frame(model, frame):
+def process_frame(model, frame,device):
     """Детекция и отслеживание людей в кадре.
 
     Args:
@@ -18,7 +18,7 @@ def process_frame(model, frame):
     Returns:
         boxes: Обнаруженные рамки с координатами и уверенностью.
     """
-    results = model.track(frame, persist=True, classes=[0], conf=0.4, iou=0.5, imgsz=640)
+    results = model.track(frame, persist=True, classes=[0], conf=0.4, iou=0.5, imgsz=640,device=device)
     return results[0].boxes
 
 
@@ -48,8 +48,8 @@ def process_video():
     # Модели
     # Стало
     models = {
-        "YOLOv8x": YOLO("yolov8x.pt", device=device),
-        "YOLO11x": YOLO("yolo11x.pt", device=device)
+        "YOLOv8x": YOLO("yolov8x.pt"),
+        "YOLO11x": YOLO("yolo11x.pt")
     }
     logger.info("Модели загружены")
 
@@ -91,7 +91,7 @@ def process_video():
             frame_copy = frame.copy()
 
             # Инференс
-            boxes = process_frame(model, frame_copy)
+            boxes = process_frame(model, frame_copy, device)
 
             # Отрисовка
             people_in_frame = 0
