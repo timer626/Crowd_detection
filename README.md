@@ -27,19 +27,13 @@ FPS: Скорость обработки.
 
 # Установка
 
-1) git clone https://github.com/timer626/Crowd_detection
-
-2) cd Crowd_detection
-
-3) python -m venv venv
-
-4) source venv/bin/activate  # На Windows: venv\Scripts\activate
-
-5) pip install -r requirements.txt
-
-6) mkdir data
-
-7) Поместите входное видео (Важно название: crowd.mp4) в папку data/.
+1. git clone https://github.com/timer626/Crowd_detection
+2. cd Crowd_detection
+3. python -m venv venv
+4. source venv/bin/activate  # На Windows: venv\Scripts\activate
+5. pip install -r requirements.txt
+6. mkdir data
+7. Поместите входное видео (Важно название: crowd.mp4) в папку data/.
 
 # Использование
 Запустите основной скрипт:
@@ -51,23 +45,25 @@ python src/main.py
 
 Видео: 
 
-    1) output_yolov8x.mp4 - результат работы YOLOv8x
+    1. output_yolov8x.mp4 - результат работы YOLOv8x
 
-    2) output_yolo11x.mp4 - результат работы YOLO11X 
+    2. output_yolo11x.mp4 - результат работы YOLO11X 
 
-    3) output_comparison.mp4 - Результат работы YOLOv8x и YOLO11X для удобства сравнения.
+    3. output_comparison.mp4 - Результат работы YOLOv8x и YOLO11X для удобства сравнения.
 
 С изображением bbox людей в толпе. Детекция и трекинг людей (класс 0 - Person) с уверенностью, размер изображения 640.
 
 Метрики: 
-    1) model_comparison.csv - показывает метрики FPS, AVG People, STD People для каждой модели
+
+     model_comparison.csv - показывает метрики FPS, AVG People, STD People для каждой модели
 
 Визуализации:
-    1) people_count_comparison.html - Интерактивный график, показывающий какое количество людей модели выделили на конкретном кадре видео
 
-    2) heatmaps_comparison.png - Визуализируют плотность толпы
+    1. people_count_comparison.html - Интерактивный график, показывающий какое количество людей модели выделили на конкретном кадре видео
 
-    3) max_diff_frame_*.png - Ключевой кадр показывает максимальное расхождения моделей
+    2. heatmaps_comparison.png - Визуализируют плотность толпы
+
+    3. max_diff_frame_*.png - Ключевой кадр показывает максимальное расхождения моделей
 
 Откройте people_count_comparison.html в браузере для просмотра интерактивного графика.
 
