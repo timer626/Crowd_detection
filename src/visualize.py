@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import plotly.express as px
-import pandas as pd
 import logging
 
 
@@ -45,6 +44,9 @@ def visualize_results(results, people_per_frame, confidences, heatmap, max_diff_
     plt.show()
     logger.info("Тепловые карты сохранены в heatmaps_comparison.png")
 
-    # Таблица
+    # Вывод таблицы в консоль
     print("\nРезультаты:")
-    print(pd.DataFrame(results))
+    print("Модель\tFPS\tСреднее кол-во людей\tСтд. отклонение")
+    print("-" * 50)
+    for row in results:
+        print(f"{row['Model']}\t{row['FPS']:.2f}\t{row['Avg People']:.2f}\t\t{row['People Std']:.2f}")

@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import pandas as pd
 from ultralytics import YOLO
 import logging
 import time
@@ -134,9 +133,5 @@ def process_video():
         results["People Std"].append(people_std)
         logger.info(f"{model_name}: Люди: {avg_people:.2f}, Std: {people_std:.2f}, FPS: {avg_fps:.2f}")
 
-    # Сохранение CSV
-    results_df = pd.DataFrame(results)
-    results_df.to_csv("output/model_comparison.csv", index=False)
-    logger.info("Результаты сохранены в model_comparison.csv")
 
     return results, people_per_frame, confidences, heatmap, max_diff_frame
