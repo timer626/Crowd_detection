@@ -27,27 +27,26 @@ FPS: Скорость обработки.
 
 # Установка
 
-git clone https://github.com/timer626/Crowd_detection
+1) git clone https://github.com/timer626/Crowd_detection
 
-cd Сrowd_detection
+2) cd Сrowd_detection
 
-Создайте виртуальное окружение и установите зависимости:
-python -m venv venv
+3) python -m venv venv
 
-source venv/bin/activate  # На Windows: venv\Scripts\activate
+4) source venv/bin/activate  # На Windows: venv\Scripts\activate
 
-pip install -r requirements.txt
+5) pip install -r requirements.txt
 
-Внутри репозитория создайте папку data
+6) mkdir data
 
-Поместите входное видео (именно с названием crowd.mp4) в папку data/.
+7) Поместите входное видео (Важно название: crowd.mp4) в папку data/.
 
-Использование
+# Использование
 Запустите основной скрипт:
 
 python src/main.py
 
-Папка с результатами
+# Папка с результатами
 Результаты сохраняются в output/:
 
 Видео: output_yolov8x.mp4, output_yolo11x.mp4, output_comparison.mp4.
