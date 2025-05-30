@@ -3,6 +3,7 @@ import numpy as np
 from ultralytics import YOLO
 import logging
 import time
+import torch
 import os
 
 
@@ -32,6 +33,11 @@ def process_video():
     """
     logger = logging.getLogger(__name__)
 
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    logger.info(f"Используемое устройство: {device}")
+    if device == "cuda":
+        logger.info(f"GPU: {torch.cuda.get_device_name(0)}")
+
     # Пути
     video_path = os.path.join(os.path.dirname(__file__), "..", "data", "crowd.mp4")
     output_paths = {"YOLOv8x": "output/output_yolov8x.mp4", "YOLO11x": "output/output_yolo11x.mp4"}
@@ -39,7 +45,11 @@ def process_video():
     os.makedirs("output", exist_ok=True)
 
     # Модели
-    models = {"YOLOv8x": YOLO("yolov8x.pt"), "YOLO11x": YOLO("yolo11x.pt")}
+    # Стало
+    models = {
+        "YOLOv8x": YOLO("yolov8x.pt", device=device),
+        "YOLO11x": YOLO("yolo11x.pt", device=device)
+    }
     logger.info("Модели загружены")
 
     # Результаты
