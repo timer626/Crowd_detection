@@ -18,7 +18,7 @@ def process_frame(model, frame,device):
     Returns:
         boxes: Обнаруженные рамки с координатами и уверенностью.
     """
-    results = model.track(frame, persist=True, classes=[0], conf=0.4, iou=0.5, imgsz=640,device=device)
+    results = model.track(frame, persist=True, classes=[0], conf=0.4, iou=0.5, imgsz=960,device=device)
     return results[0].boxes
 
 
