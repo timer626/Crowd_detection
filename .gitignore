@@ -30,3 +30,6 @@ Thumbs.db
 # Временные файлы
 *.tmp
 *.swp
+
+yolo11x.pt
+yolo8x.pt

@@ -29,7 +29,7 @@ def visualize_results(results, people_per_frame, confidences, heatmap, max_diff_
     fig.update_layout(xaxis_title="Кадр", yaxis_title="Люди")
     fig.add_vline(x=max_diff_frame["number"], line_dash="dash", annotation_text="Макс. разница", annotation_position="top")
     fig.write_html("output/people_count_comparison.html")
-    fig.show()
+    #fig.show()
     logger.info("График сохранен в people_count_comparison.html")
 
     # Тепловые карты
@@ -41,7 +41,7 @@ def visualize_results(results, people_per_frame, confidences, heatmap, max_diff_
         plt.title(f"Тепловая карта ({model_name})")
     plt.tight_layout()
     plt.savefig("output/heatmaps_comparison.png")
-    plt.show()
+    #plt.show()
     logger.info("Тепловые карты сохранены в heatmaps_comparison.png")
 
     # Вывод таблицы в консоль
