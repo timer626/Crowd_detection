@@ -22,12 +22,16 @@
 
 0. Откройте терминал (командную строку)
 1. git clone https://github.com/timer626/Crowd_detection
+Не закрывайте терминал, дождитесь окончания загрузки.
 2. cd Crowd_detection
 3. python -m venv venv
+Не закрывайте терминал, дождитесь окончания загрузки.
 4. source venv/bin/activate  # На Windows: venv\Scripts\activate
 5. pip install -r requirements.txt
+Не закрывайте терминал, дождитесь окончания загрузки.
 6. mkdir data
 7. Поместите входное видео (Важно название: crowd.mp4) в папку data/.
+8. Перейдите к пункту "Использование"
 
 # Использование
 Запустите основной скрипт:
